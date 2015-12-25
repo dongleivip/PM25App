@@ -3,7 +3,7 @@ package com.thoughtworks.myapp;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +24,8 @@ import retrofit.Retrofit;
  */
 public class CityListActivity  extends ListActivity {
 
+    private final String TAG = "CityListActivity";
+
     private ProgressDialog loadingDialog;
     private TextView messageTextView;
     private Button reloadButton;
@@ -38,36 +40,44 @@ public class CityListActivity  extends ListActivity {
         this.cityCollection = cityCollection;
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
-        initCityData();
+        Log.d(TAG,"onStart");
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG,"onCreate");
+
         setContentView(R.layout.citylist_layout);
+
         initViews();
+
+        queryCityData();
     }
 
     private void initViews(){
+        Log.d(TAG, "initViews()");
+
+        loadingDialog = new ProgressDialog(this);
+        loadingDialog.setMessage(getString(R.string.loading_message));
         messageTextView = (TextView)findViewById(R.id.text_view_message);
         reloadButton = (Button)findViewById(R.id.button_reloadcity);
         reloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initCityData();
+                queryCityData();
             }
         });
 
-        if(cityCollection != null){
-            populateCityList();
-        }
     }
 
-    private void initCityData(){
+
+    private void queryCityData(){
+        Log.d(TAG, "initCityData()");
+
         showLoading();
         CitiesServiceClient.getInstance().requestCities(new Callback<CityCollection>() {
             @Override
@@ -83,25 +93,33 @@ public class CityListActivity  extends ListActivity {
         });
     }
 
-    private void populateCityList(){
-
-        ArrayList<String> cities = getCityCollection().getCities();
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,cities);
-        setListAdapter(adapter);
-    }
-
     private void showSuccessScreen() {
         hideLoading();
         messageTextView.setText("");
         messageTextView.setVisibility(View.GONE);
         reloadButton.setVisibility(View.GONE);
+
+        populateCityList();
     }
 
     private void showErrorScreen() {
         hideLoading();
         messageTextView.setVisibility(View.VISIBLE);
         messageTextView.setText(R.string.error_message_query_city);
+        reloadButton.setVisibility(View.VISIBLE);
         Toast.makeText(CityListActivity.this, R.string.error_message_query_city, Toast.LENGTH_SHORT).show();
+    }
+
+    private void populateCityList(){
+
+        Log.d(TAG,"populateCityList()");
+
+        if(getCityCollection()!= null)
+        {
+            ArrayList<String> cities = getCityCollection().getCities();
+            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,cities);
+            setListAdapter(adapter);
+        }
     }
 
     private void showLoading() {
@@ -113,3 +131,4 @@ public class CityListActivity  extends ListActivity {
     }
 
 }
+

@@ -6,4 +6,6 @@
     <string name="button_queryCities">QueryCities</string>
     <string name="error_message_query_city">Network timeout.Please check your network status.</string>
     <string name="reloadcity">Refresh</string>
+    <string name="defaultCity">xian</string>
+    <string name="citylist">CityList</string>
 </resources>

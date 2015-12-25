@@ -1,9 +1,11 @@
 package com.thoughtworks.myapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = "MainActivity";
     private EditText cityEditText;
     private TextView pm25TextView;
     private ProgressDialog loadingDialog;
@@ -54,8 +57,16 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_query_citis).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-
+                 onShowCitiesClick();
              }
+        });
+
+        findViewById(R.id.button_open_citylist).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"Start CityListActivity");
+               startActivity(new Intent(MainActivity.this,CityListActivity.class));
+            }
         });
     }
 

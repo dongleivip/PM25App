@@ -3,6 +3,7 @@ package com.thoughtworks.myapp.domain;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -18,6 +19,7 @@ public class CityCollection {
     }
 
     public void setCities(ArrayList<String> cities) {
+        Collections.sort(cities);
         this.cities = cities;
     }
 }
