@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PM25</string>
+    <string name="button_query">Query</string>
+    <string name="error_message_query_pm25">Please try again</string>
+    <string name="loading_message">Loading</string>
+    <string name="button_queryCities">QueryCities</string>
+    <string name="error_message_query_city">Network timeout.Please check your network status.</string>
+    <string name="reloadcity">Refresh</string>
+</resources>
