@@ -5,12 +5,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="HHHHHHHHHH"
-        />
-
-    <TextView
         android:id="@+id/text_view_message"
         android:layout_width="fill_parent"
         android:visibility="gone"

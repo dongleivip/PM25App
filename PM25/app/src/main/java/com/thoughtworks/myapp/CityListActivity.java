@@ -5,8 +5,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +71,16 @@ public class CityListActivity  extends ListActivity {
             @Override
             public void onClick(View v) {
                 queryCityData();
+            }
+        });
+
+        ListView listView = (ListView)findViewById(android.R.id.list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tv = (TextView)view.findViewById(android.R.id.text1);
+                Toast.makeText(CityListActivity.this,tv.getText(),Toast.LENGTH_SHORT).show();
             }
         });
 
