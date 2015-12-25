@@ -12,25 +12,34 @@
 
     <TextView
         android:id="@+id/text_view_pm25"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button_query_pm25"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_query" />
-
-    <Button
-        android:id="@+id/button_query_citis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_queryCities" />
+        android:text="@string/button_query"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
     <Button
         android:id="@+id/button_open_citylist"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/citylist"
+        android:text="@string/allcities"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <Button
+        android:id="@+id/button_defaultcity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/defaultCity"
+        android:onClick="onDefaultCityClick"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         />
 </LinearLayout>

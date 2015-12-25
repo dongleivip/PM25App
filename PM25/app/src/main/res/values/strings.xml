@@ -5,7 +5,13 @@
     <string name="loading_message">Loading</string>
     <string name="button_queryCities">QueryCities</string>
     <string name="error_message_query_city">Network timeout.Please check your network status.</string>
-    <string name="reloadcity">Refresh</string>
     <string name="defaultCity">xian</string>
-    <string name="citylist">CityList</string>
+    <string name="positionName">监测点：</string>
+    <string name="pollutant">主要污染物：</string>
+    <string name="quality">质量：</string>
+    <string name="refresh">Refresh</string>
+    <string name="error_message_query_aqi">Request timeout. Please try latter.</string>
+    <string name="allcities">All Cities</string>
+    <string name="button_refresh">Refresh</string>
+    <string name="error_api_exceeded">您这个小时内的API请求次数用完了</string>
 </resources>

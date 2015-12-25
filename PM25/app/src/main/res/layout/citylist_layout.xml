@@ -5,16 +5,21 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/allcities"/>
+
+    <TextView
         android:id="@+id/text_view_message"
         android:layout_width="fill_parent"
         android:visibility="gone"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/button_reloadcity"
+        android:id="@+id/button_city_refresh"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:text="@string/reloadcity"/>
+        android:text="@string/refresh"/>
 
     <ListView
         android:id="@android:id/list"

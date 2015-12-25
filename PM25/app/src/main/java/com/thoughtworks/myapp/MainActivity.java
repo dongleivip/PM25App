@@ -9,12 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thoughtworks.myapp.domain.CityCollection;
 import com.thoughtworks.myapp.domain.PM25;
 import com.thoughtworks.myapp.service.serviceclient.AirServiceClient;
-import com.thoughtworks.myapp.service.serviceclient.CitiesServiceClient;
 
 import java.util.List;
 
@@ -30,12 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog loadingDialog;
 
     private CityCollection cityCollection = null;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        initCityData();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,51 +46,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_query_citis).setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 onShowCitiesClick();
-             }
-        });
-
         findViewById(R.id.button_open_citylist).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"Start CityListActivity");
-               startActivity(new Intent(MainActivity.this,CityListActivity.class));
+                Log.d(TAG, "Start CityListActivity");
+                startActivity(new Intent(MainActivity.this, CityListActivity.class));
             }
         });
-    }
 
-    private void initCityData(){
-        //showLoading();
-        CitiesServiceClient.getInstance().requestCities(new Callback<CityCollection>() {
-            @Override
-            public void onResponse(Response<CityCollection> response, Retrofit retrofit) {
-                setCityCollection(response.body());
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(MainActivity.this, R.string.error_message_query_city, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public CityCollection getCityCollection() {
-        return cityCollection;
-    }
-
-    public void setCityCollection(CityCollection cityCollection) {
-        this.cityCollection = cityCollection;
-    }
-
-    private void onShowCitiesClick(){
-        StringBuffer buffer = new StringBuffer();
-        for(int i = 0;i < 10 ;i++){
-            buffer.append(getCityCollection().getCities().get(i) + ",");
-        }
-        pm25TextView.setText(buffer.toString());
     }
 
 
@@ -145,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideLoading() {
         loadingDialog.dismiss();
+    }
+
+
+    public void onDefaultCityClick(View view){
+        Intent intent = new Intent(MainActivity.this,AqiActivity.class);
+        Log.e(TAG, "City -> " + this.getString(R.string.defaultCity));
+        intent.putExtra("city", this.getString(R.string.defaultCity));
+
+        startActivity(intent);
     }
 
 }
