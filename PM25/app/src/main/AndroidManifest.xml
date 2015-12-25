@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CityListActivity"/>
+        <activity android:name=".AqiActivity"/>
     </application>
 
 </manifest>
